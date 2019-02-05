@@ -10,7 +10,6 @@ price
 This module contains
 
 - The language files in English and French
-- The css file in French and English
 - The module
   
 Via the installation system administration ClicShopping
@@ -25,7 +24,7 @@ Modules:
 - Multi languages
 
 Recommendation and documentation specific use :
-
+Activate the module in Configuration / My backoffice / Dashboard Administration
 
 Implementation:
 
