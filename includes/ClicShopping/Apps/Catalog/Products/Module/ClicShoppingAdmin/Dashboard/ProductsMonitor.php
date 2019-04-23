@@ -85,7 +85,7 @@
         $output .= '<div>' . $this->app->getDef('module_admin_dashboard_products_monitor_app_title') . '</div>';
         $output .= '<table class="table table-sm table-hover">';
         $output .= '<thead>';
-        $output .= '<tr class="dataTableHeadingRow">';
+        $output .= '<tr class="dataTableRow backgroundBlank">';
         $output .= '<th width="50">' . $this->app->getDef('module_admin_dashboard_products_monitor_app_products_id') . '</th>';
         $output .= '<th width="250">' . $this->app->getDef('module_admin_dashboard_products_monitor_app_products_model') . '</th>';
         $output .= '<th width="300">' . $this->app->getDef('module_admin_dashboard_products_monitor_app_products_errors') . '</th>';
@@ -96,7 +96,7 @@
 
         while ($Qproducts->fetch()) {
 
-          $output .= '  <tr>' .
+          $output .= '  <tr class="dataTableRow backgroundBlank">' .
                      '    <td>' . $Qproducts->valueInt('products_id') . ' </td> ' .
                      '    <td>' . HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Edit&pID=' . $Qproducts->valueInt('products_id')), HTML::outputProtected($Qproducts->value('products_name')));
 
