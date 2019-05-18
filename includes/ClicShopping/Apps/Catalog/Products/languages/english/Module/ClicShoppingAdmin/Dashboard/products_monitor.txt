@@ -14,3 +14,5 @@ module_admin_dashboard_products_monitor_app_no_price = zero price
 module_admin_dashboard_products_monitor_app_no_stock = No stock
 
 module_admin_dashboard_perfect_products = No critical products detected.
+
+image_edit = Edit

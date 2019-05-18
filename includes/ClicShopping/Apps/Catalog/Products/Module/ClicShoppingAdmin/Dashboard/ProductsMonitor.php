@@ -82,7 +82,7 @@
 
         $output = '<span class="' . $content_width . '">';
         $output .= '<div class="separator"></div>';
-        $output .= '<div>' . $this->app->getDef('module_admin_dashboard_products_monitor_app_title') . '</div>';
+        $output .= '<div class="dataTableHeadingRow">' . $this->app->getDef('module_admin_dashboard_products_monitor_app_title') . '</div>';
         $output .= '<table class="table table-sm table-hover">';
         $output .= '<thead>';
         $output .= '<tr class="dataTableRow backgroundBlank">';
