@@ -1,13 +1,13 @@
 <?php
-/**
- *
- *  @copyright 2008 - https://www.clicshopping.org
- *  @Brand : ClicShopping(Tm) at Inpi all right Reserved
- *  @Licence GPL 2 & MIT
- *  @licence MIT - Portion of osCommerce 2.4
- *  @Info : https://www.clicshopping.org/forum/trademark/
- *
- */
+  /**
+   *
+   * @copyright 2008 - https://www.clicshopping.org
+   * @Brand : ClicShopping(Tm) at Inpi all right Reserved
+   * @Licence GPL 2 & MIT
+   * @licence MIT - Portion of osCommerce 2.4
+   * @Info : https://www.clicshopping.org/forum/trademark/
+   *
+   */
 
   namespace ClicShopping\Apps\Catalog\Products\Module\ClicShoppingAdmin\Dashboard;
 
@@ -17,12 +17,14 @@
 
   use ClicShopping\Apps\Catalog\Products\Products as ProductsApp;
 
-  class ProductsMonitor extends \ClicShopping\OM\Modules\AdminDashboardAbstract {
+  class ProductsMonitor extends \ClicShopping\OM\Modules\AdminDashboardAbstract
+  {
 
     protected $lang;
     protected $app;
 
-    protected function init() {
+    protected function init()
+    {
 
       if (!Registry::exists('Products')) {
         Registry::set('Products', new ProductsApp());
@@ -36,13 +38,14 @@
       $this->title = $this->app->getDef('module_admin_dashboard_products_monitor_app_title');
       $this->description = $this->app->getDef('module_admin_dashboard_products_monitor_app_description');
 
-      if ( defined('MODULE_ADMIN_DASHBOARD_PRODUCTS_MONITOR_APP_STATUS') ) {
+      if (defined('MODULE_ADMIN_DASHBOARD_PRODUCTS_MONITOR_APP_STATUS')) {
         $this->sort_order = (int)MODULE_ADMIN_DASHBOARD_PRODUCTS_MONITOR_APP_SORT_ORDER;
         $this->enabled = (MODULE_ADMIN_DASHBOARD_PRODUCTS_MONITOR_APP_STATUS == 'True');
       }
     }
 
-    public function getOutput() {
+    public function getOutput()
+    {
       $CLICSHOPPING_Template = Registry::get('TemplateAdmin');
 
       $Qproducts = $this->app->db->prepare('select  p.products_id,
@@ -97,8 +100,8 @@
         while ($Qproducts->fetch()) {
 
           $output .= '  <tr class="dataTableRow backgroundBlank">' .
-                     '    <td>' . $Qproducts->valueInt('products_id') . ' </td> ' .
-                     '    <td>' . HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Edit&pID=' . $Qproducts->valueInt('products_id')), HTML::outputProtected($Qproducts->value('products_name')));
+            '    <td>' . $Qproducts->valueInt('products_id') . ' </td> ' .
+            '    <td>' . HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Edit&pID=' . $Qproducts->valueInt('products_id')), HTML::outputProtected($Qproducts->value('products_name')));
 
           $err_list = '';
           $list_no = false;
@@ -128,7 +131,7 @@
             if ($list_no) {
               $err_list .= ', ';
             }
-            $err_list .=  $this->app->getDef('module_admin_dashboard_products_monitor_app_no_price');
+            $err_list .= $this->app->getDef('module_admin_dashboard_products_monitor_app_no_price');
             $list_no = true;
           }
 
@@ -143,7 +146,7 @@
           $output .= '<td>' . $err_list . '</td>';
           $output .= '<td class="text-md-right">' . $Qproducts->value('products_last_modified') . '</td>';
           $output .= '<td class="text-md-right">' . HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Edit&pID=' . $Qproducts->valueInt('products_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $this->app->getDef('image_edit'))) . '</td>';
-          $output .=  '</tr>';
+          $output .= '</tr>';
         } // end while
 
         $output .= '</tbody>';
@@ -154,7 +157,8 @@
       return $output;
     }
 
-    public function Install() {
+    public function Install()
+    {
 
       if ($this->lang->getId() != 2) {
 
@@ -208,7 +212,7 @@
           ]
         );
 
-         $this->app->db->save('configuration', [
+        $this->app->db->save('configuration', [
             'configuration_title' => 'Select the width to display',
             'configuration_key' => 'MODULE_ADMIN_DASHBOARD_PRODUCTS_MONITOR_APP_CONTENT_WIDTH',
             'configuration_value' => '12',
@@ -220,7 +224,7 @@
           ]
         );
 
-         $this->app->db->save('configuration', [
+        $this->app->db->save('configuration', [
             'configuration_title' => 'Sort Order',
             'configuration_key' => 'MODULE_ADMIN_DASHBOARD_PRODUCTS_MONITOR_APP_SORT_ORDER',
             'configuration_value' => '500',
@@ -234,10 +238,11 @@
       }
     }
 
-    public function keys() {
+    public function keys()
+    {
       return ['MODULE_ADMIN_DASHBOARD_PRODUCTS_MONITOR_APP_STATUS',
-              'MODULE_ADMIN_DASHBOARD_PRODUCTS_MONITOR_APP_CONTENT_WIDTH',
-              'MODULE_ADMIN_DASHBOARD_PRODUCTS_MONITOR_APP_SORT_ORDER'
-             ];
+        'MODULE_ADMIN_DASHBOARD_PRODUCTS_MONITOR_APP_CONTENT_WIDTH',
+        'MODULE_ADMIN_DASHBOARD_PRODUCTS_MONITOR_APP_SORT_ORDER'
+      ];
     }
   }
