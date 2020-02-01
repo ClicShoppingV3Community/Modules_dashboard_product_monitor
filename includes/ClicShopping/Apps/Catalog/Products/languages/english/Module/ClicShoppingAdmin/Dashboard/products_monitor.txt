@@ -12,7 +12,7 @@ module_admin_dashboard_products_monitor_app_no_picture = no picture
 module_admin_dashboard_products_monitor_app_no_tax = no tax class
 module_admin_dashboard_products_monitor_app_no_price = zero price
 module_admin_dashboard_products_monitor_app_no_stock = No stock
-
+module_admin_dashboard_products_monitor_app_products_text_action = Action
 module_admin_dashboard_perfect_products = No critical products detected.
 
 image_edit = Edit

@@ -85,14 +85,25 @@
 
         $output = '<span class="' . $content_width . '">';
         $output .= '<div class="separator"></div>';
-        $output .= '<div class="dataTableHeadingRow">' . $this->app->getDef('module_admin_dashboard_products_monitor_app_title') . '</div>';
-        $output .= '<table class="table table-sm table-hover">';
-        $output .= '<thead>';
-        $output .= '<tr class="dataTableRow backgroundBlank">';
-        $output .= '<th width="50">' . $this->app->getDef('module_admin_dashboard_products_monitor_app_products_id') . '</th>';
-        $output .= '<th width="250">' . $this->app->getDef('module_admin_dashboard_products_monitor_app_products_model') . '</th>';
-        $output .= '<th width="300">' . $this->app->getDef('module_admin_dashboard_products_monitor_app_products_errors') . '</th>';
-        $output .= '<th width="230" class="text-md-center" colspan="2">' . $this->app->getDef('module_admin_dashboard_products_monitor_app_products_last_modified') . '</th>';
+        $output .= '<div class="">' . $this->app->getDef('module_admin_dashboard_products_monitor_app_title') . '</div>';
+        $output .= '<table
+          id="table"
+          data-toggle="table"
+          data-sort-name="id"
+          data-sort-order="id"
+          data-toolbar="#toolbar"
+          data-buttons-class="primary"
+          data-show-toggle="true"
+          data-show-columns="true"
+          data-mobile-responsive="true">';
+
+        $output .= '<thead class="dataTableHeadingRow">';
+        $output .= '<tr>';
+        $output .= '<th data-field="id">' . $this->app->getDef('module_admin_dashboard_products_monitor_app_products_id') . '</th>';
+        $output .= '<th data-field="model">' . $this->app->getDef('module_admin_dashboard_products_monitor_app_products_model') . '</th>';
+        $output .= '<th data-field="erros">' . $this->app->getDef('module_admin_dashboard_products_monitor_app_products_errors') . '</th>';
+        $output .= '<th data-field="modified">' . $this->app->getDef('module_admin_dashboard_products_monitor_app_products_last_modified') . '</th>';
+        $output .= '<th data-field="action" data-switchable="false"class="text-md-center">' . $this->app->getDef('module_admin_dashboard_products_monitor_app_products_text_action') . '</th>';
         $output .= '</tr>';
         $output .= '</thead>';
         $output .= '<tbody>';
