@@ -123,35 +123,46 @@
           }
 
           if (empty($Qproducts->value('products_image'))) {
-            if ($list_no) {
-              $err_list .= ', ';
+            if ($list_no === true) {
+              $err_list .= ', <br />';
             }
             $err_list .= $this->app->getDef('module_admin_dashboard_products_monitor_app_no_picture');
             $list_no = true;
           }
 
           if ($Qproducts->valueInt('products_tax_class_id') == 0) {
-            if ($list_no) {
-              $err_list .= ', ';
+            if ($list_no === true) {
+              $err_list .= ', <br />';
             }
             $err_list .= $this->app->getDef('module_admin_dashboard_products_monitor_app_no_tax');
             $list_no = true;
           }
 
           if ($Qproducts->value('products_price') == 0) {
-            if ($list_no) {
-              $err_list .= ', ';
+            if ($list_no === true) {
+              $err_list .= ', <br />';
             }
             $err_list .= $this->app->getDef('module_admin_dashboard_products_monitor_app_no_price');
             $list_no = true;
           }
 
-          if ($Qproducts->value('products_quantity') == 0) {
-            if ($list_no) {
-              $err_list .= ', ';
+          if (STOCK_CHECK == 'true' && STOCK_LIMITED == 'true') {
+            if ($Qproducts->value('products_quantity') > 0) {
+              if (STOCK_REORDER_LEVEL > 0 && $Qproducts->value('products_quantity') < STOCK_REORDER_LEVEL) {
+                if ($list_no === true) {
+                  $err_list .= ', <br />';
+                }
+                $err_list .= $this->app->getDef('module_admin_dashboard_products_monitor_app_no_stock_reorder', ['reorder' => $Qproducts->value('products_quantity')]);
+                $list_no = true;
+              }
+            } else {
+              if ($Qproducts->value('products_quantity') == 0) {
+                if ($list_no === true) {
+                  $err_list .= ', <br />';
+                }
+                $err_list .= $this->app->getDef('module_admin_dashboard_products_monitor_app_no_stock');
+              }
             }
-            $err_list .= $this->app->getDef('module_admin_dashboard_products_monitor_app_no_stock');
-            $list_no = true;
           }
 
           $output .= '<td>' . $err_list . '</td>';
