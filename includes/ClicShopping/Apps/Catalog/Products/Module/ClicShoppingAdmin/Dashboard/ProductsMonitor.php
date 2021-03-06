@@ -38,7 +38,7 @@
       $this->title = $this->app->getDef('module_admin_dashboard_products_monitor_app_title');
       $this->description = $this->app->getDef('module_admin_dashboard_products_monitor_app_description');
 
-      if (defined('MODULE_ADMIN_DASHBOARD_PRODUCTS_MONITOR_APP_STATUS')) {
+      if (\defined('MODULE_ADMIN_DASHBOARD_PRODUCTS_MONITOR_APP_STATUS')) {
         $this->sort_order = (int)MODULE_ADMIN_DASHBOARD_PRODUCTS_MONITOR_APP_SORT_ORDER;
         $this->enabled = (MODULE_ADMIN_DASHBOARD_PRODUCTS_MONITOR_APP_STATUS == 'True');
       }
@@ -89,6 +89,8 @@
         $output .= '<table
           id="table"
           data-toggle="table"
+    data-icons-prefix="bi"
+    data-icons="icons"
           data-sort-name="id"
           data-sort-order="id"
           data-toolbar="#toolbar"
