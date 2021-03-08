@@ -19,13 +19,12 @@
 
   class ProductsMonitor extends \ClicShopping\OM\Modules\AdminDashboardAbstract
   {
-
     protected $lang;
     protected $app;
+    public $group;
 
     protected function init()
     {
-
       if (!Registry::exists('Products')) {
         Registry::set('Products', new ProductsApp());
       }
@@ -73,7 +72,7 @@
                                           ');
       $Qproducts->bindValue(':products_model', '');
       $Qproducts->bindValue(':products_image', '');
-      $Qproducts->bindInt(':language_id', (int)$this->lang->getId());
+      $Qproducts->bindInt(':language_id', $this->lang->getId());
 
       $Qproducts->execute();
 
@@ -105,7 +104,7 @@
         $output .= '<th data-field="model">' . $this->app->getDef('module_admin_dashboard_products_monitor_app_products_model') . '</th>';
         $output .= '<th data-field="erros">' . $this->app->getDef('module_admin_dashboard_products_monitor_app_products_errors') . '</th>';
         $output .= '<th data-field="modified">' . $this->app->getDef('module_admin_dashboard_products_monitor_app_products_last_modified') . '</th>';
-        $output .= '<th data-field="action" data-switchable="false"class="text-md-center">' . $this->app->getDef('module_admin_dashboard_products_monitor_app_products_text_action') . '</th>';
+        $output .= '<th data-field="action" data-switchable="false"class="text-center">' . $this->app->getDef('module_admin_dashboard_products_monitor_app_products_text_action') . '</th>';
         $output .= '</tr>';
         $output .= '</thead>';
         $output .= '<tbody>';
@@ -168,8 +167,8 @@
           }
 
           $output .= '<td>' . $err_list . '</td>';
-          $output .= '<td class="text-md-right">' . $Qproducts->value('products_last_modified') . '</td>';
-          $output .= '<td class="text-md-right">' . HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Edit&pID=' . $Qproducts->valueInt('products_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $this->app->getDef('image_edit'))) . '</td>';
+          $output .= '<td class="text-end">' . $Qproducts->value('products_last_modified') . '</td>';
+          $output .= '<td class="text-end">' . HTML::link(CLICSHOPPING::link(null, 'A&Catalog\Products&Edit&pID=' . $Qproducts->valueInt('products_id')), HTML::image($CLICSHOPPING_Template->getImageDirectory() . 'icons/edit.gif', $this->app->getDef('image_edit'))) . '</td>';
           $output .= '</tr>';
         } // end while
 
